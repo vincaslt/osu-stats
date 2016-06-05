@@ -1,7 +1,6 @@
 var Promise = require('bluebird');
 
 module.exports = {
-
     getPlayersFromAPI: function(playerIds) {
         return new Promise(function(success, error) {
             var players = [];

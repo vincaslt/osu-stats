@@ -23,9 +23,10 @@ module.exports = function(agenda) {
         // execute job
         run: function(job, done) {
             sails.log('Collecting players...');
-            ScoreService.parsePlayersFromPage(1).then(function(players) {
-                sails.log('Received ' + players.length + ' players.');
-            });
+            ScoreService.parseTopPlayers(1, sails.config.application.rankLimit)
+                then(function(players) {
+                    sails.log('Done loading players!');
+                });
         },
     };
     return job;
