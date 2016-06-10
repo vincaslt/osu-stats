@@ -2,16 +2,10 @@ var Promise = require('bluebird');
 
 module.exports = {
     getPlayersFromAPI: function(playerIds) {
-        return new Promise(function(success, error) {
-            var players = [];
-            playerIds.forEach(function(playerId) {
-                UtilService.osu.getUserAsync(playerId)
-                    .then(function(player) {
-                        if (players.push(player) >= 50) {
-                            return success(players);
-                        }
-                    });
-            });
+        var promises = playerIds.map(function(playerId) {
+            return UtilService.osu.getUserAsync(playerId);
         });
+
+        return Promise.all(promises);
     }
 }

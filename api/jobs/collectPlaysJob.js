@@ -24,7 +24,7 @@ module.exports = function(agenda) {
         run: function(job, done) {
             sails.log('Collecting players...');
             ScoreService.parseTopPlayers(1, sails.config.application.rankLimit)
-                then(function(players) {
+                .then(function(players) {
                     sails.log('Done loading players!');
                 });
         },
